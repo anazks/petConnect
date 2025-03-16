@@ -1,0 +1,48 @@
+<style>
+    body {
+        background: #1e2832;
+    }
+
+    .NavSeller {
+        width: 70px;
+        width: 100%;
+        background: #00be66;
+        color: #333;
+    }
+
+    .submit-btn {
+        background: #00be66;
+        border: none;
+        padding: 10px 15px;
+        margin-right: 30px;
+        color: #fff;
+    }
+</style>
+
+<body>
+
+    <div class="NavSeller">
+        <h5 style="color:white;padding:5px;font-family: 'Glegoo', serif;">Welcome to <span
+                style="color:#1e2832;">Grow green Consultant</span></h5>
+    </div>
+
+    <div class="container" style="width: 500px;margin-top:50px;background: #fff;padding:30px">
+        <h1 style="text-align: center;">Login</h1>
+        <form action="/consultant/login" method="post">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="submit-btn">LOGIN</button>
+            <a href="/consultant/register" class="text-success" style="text-decoration: none;">
+                Don't registered yet? Register</a>
+            <br><br>
+        </form>
+    </div>
+</body>

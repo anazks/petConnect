@@ -1,0 +1,40 @@
+<h2 class="text-secondary text-center m-4">My Orders</h2>
+<div class="container" style="margin-top: 10px;min-height:40vh">
+  <div class="card mb-3 mt-3 pt-5" style="max-width:90%;border:none">
+    <div class="row g-0">
+      {{#if product}}
+      {{#each product}}
+      <div class=" d-flex">
+        <div class="col-md-4 cart" style="margin-bottom: 20px;border:none">
+          <img style="height: 100%;" src="/images/product/{{productId}}.jpg" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8 cart" style="margin-bottom: 20px;border:none;background:#f3af92">
+          <div class="card-body text-light">
+            <h5 class="card-title">{{productName}}</h5>
+            <p class="card-text">Quantity :{{quantity}}</p>
+            <h6>Price:{{totalPrice}}</h6>
+            <h6><b>Status</b>:{{status}}</h6>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{else}}
+      <h1 class="text-center m-3 p-3 text-secondary">Your have no orders now ....</h1>
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+
+<section class="footer bg-dark mt-5 text-light" style="height:30vh">
+  <div class="footer-wrapper">
+    <h2 class="footer-title text-center pt-3">
+      CONTACT US
+    </h2>
+    <div class="icons-group d-flex justify-content-center mt-5">
+      <i class="fa-solid fa-envelope me-5 fa-3x" class="footer-icon"></i>
+      <i class="fa-brands fa-twitter me-5 fa-3x" class="footer-icon"></i>
+      <i class="fa-brands fa-facebook fa-3x" class="footer-icon"></i>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+<style>
+    body {
+        background: #1e2832;
+    }
+
+    .NavSeller {
+        width: 70px;
+        width: 100%;
+        background: #00be66;
+        color: #333;
+    }
+
+    .submit-btn {
+        background: #00be66;
+        border: none;
+        padding: 10px 15px;
+        margin-right: 30px;
+        color: #fff;
+    }
+</style>
+
+<body style="background: #b3ccaf;">
+
+    <div class="NavSeller">
+        <h5 style="color:white;padding:5px;font-family: 'Glegoo', serif;">Welcome to <span
+                style="color:#1e2832;">Grow Green </span></h5>
+    </div>
+    <div class="container" style="width: 500px;margin:50px auto; background: #fff;padding:25px">
+        <h1 style="text-align: center;color:#1e2832;font-family: 'Glegoo', serif;">SIGNUP</h1>
+        <form action="/consultant/register" method="post">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" style="color: #1e2832;">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">Mobile</label>
+                <input name="mobile" type="number" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">UserName</label>
+                <input name="userName" type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">place</label>
+                <input name="place" type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">password</label>
+                <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+            <a href="/consultant/" class="text-secondary" style="text-decoration: none;">Already have an account?
+                Login</a>
+            <br><br>
+        </form>
+    </div>
+</body>

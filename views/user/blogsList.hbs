@@ -1,0 +1,40 @@
+<div class="container" style="margin-top: 20px;min-height:45vh">
+    <h2 class="product-title text-center m-4">New Medicinal Blogs</h2>
+    <div class="row mb-3">
+        {{#if medBlogs}}
+        {{#each medBlogs}}
+        <div class="col-sm-6" style="margin-left: 0px; min-height: 500px">
+            <div class="card" style="width: 100%; height:max-content">
+                <img src="/images/medBlog/{{_id}}.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h6 class="card-title">{{title}}</h6>
+                    <h5 class="card-title">{{date}}</h5>
+                    <p class="card-text">{{content}}</p>
+                </div>
+                <div class="bottom d-flex justify-content-center align-items-center">
+
+                    <a href="/users/like/{{_id}}" class="btn btn-outline-primary"><span
+                            class="me-3">{{likes.length}}</span> <i class="fa-solid fa-thumbs-up"></i>Like</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+        {{else}}
+        <h2 class="mt-4 text-center">OOps..... No Data found !!!</h2>
+        {{/if}}
+    </div>
+</div>
+
+<section class="footer bg-dark mt-5 text-light" style="height:30vh">
+    <div class="footer-wrapper">
+        <h2 class="footer-title text-center pt-3">
+            CONTACT US
+        </h2>
+        <div class="icons-group d-flex justify-content-center mt-5">
+            <i class="fa-solid fa-envelope me-5 fa-3x" class="footer-icon"></i>
+            <i class="fa-brands fa-twitter me-5 fa-3x" class="footer-icon"></i>
+            <i class="fa-brands fa-facebook fa-3x" class="footer-icon"></i>
+        </div>
+    </div>
+</section>

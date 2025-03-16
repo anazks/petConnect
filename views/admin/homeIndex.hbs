@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paws & Hearts Pet Adoption</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: #333;
+            overflow: hidden;
+        }
+        
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/api/placeholder/1200/400");
+            height: 400px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        .features {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .feature-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 300px;
+            transition: transform 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .modules {
+            background-color: #e9ecef;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .module-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .module-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 250px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .user-icon::after {
+            content: "👤";
+        }
+        
+        .admin-icon::after {
+            content: "🔑";
+        }
+        
+        .volunteer-icon::after {
+            content: "🤝";
+        }
+        
+        .doctor-icon::after {
+            content: "⚕️";
+        }
+        
+        .pets {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .pet-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .pet-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .pet-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pet-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .pet-info {
+            padding: 1rem;
+        }
+        
+        .pet-info h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .pet-tag {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-cards, .module-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .pet-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            
+            nav a {
+                float: none;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Paws & Hearts Pet Adoption</h1>
+        <p>Find your perfect furry companion</p>
+    </header>
+    
+    <nav>
+        <a href="/adminLoginPage">Admin</a>
+        <a href="/users">Buy Pets</a>
+        <a href="/seller">Add Your Pets</a>
+        <a href="/login">Health Care</a>
+        <a href="/consultant">Volunteers </a>
+        <a href="#login" style="float: right;">Login</a>
+        <a href="#register" style="float: right;">Register</a>
+    </nav>
+    
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Give a Pet a Forever Home</h1>
+            <p>Our mission is to find loving homes for abandoned and rescued animals. Join us in making a difference in their lives.</p>
+            <a href="#pets" class="btn">Adopt Now</a>
+        </div>
+    </section>
+    
+    <section class="features" id="about">
+        <h2>Why Adopt With Us?</h2>
+        <div class="feature-cards">
+            <div class="card">
+                <img src="/api/placeholder/300/200" alt="Healthy Pets">
+                <div class="card-content">
+                    <h3>Healthy Pets</h3>
+                    <p>All our pets are examined by licensed veterinarians and receive necessary vaccinations.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/api/placeholder/300/200" alt="Support System">
+                <div class="card-content">
+                    <h3>Ongoing Support</h3>
+                    <p>Our team of volunteers and veterinarians will support you throughout your pet adoption journey.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="/api/placeholder/300/200" alt="Community">
+                <div class="card-content">
+                    <h3>Join Our Community</h3>
+                    <p>Become part of a loving community of pet owners who share tips and experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="modules" id="modules">
+        <h2>Our Modules</h2>
+        <p>Different roles to help our adoption process run smoothly</p>
+        <div class="module-container">
+            <div class="module-card">
+                <div class="module-icon user-icon"></div>
+                <h3>User Module</h3>
+                <p>Browse available pets, submit adoption applications, and track your application status.</p>
+                <a href="#user-login" class="btn" style="margin-top: 1rem;">User Portal</a>
+            </div>
+            <div class="module-card">
+                <div class="module-icon admin-icon"></div>
+                <h3>Admin Module</h3>
+                <p>Manage shelter operations, approve adoptions, and oversee the entire system.</p>
+                <a href="#admin-login" class="btn" style="margin-top: 1rem;">Admin Portal</a>
+            </div>
+            <div class="module-card">
+                <div class="module-icon volunteer-icon"></div>
+                <h3>Volunteer Module</h3>
+                <p>Coordinate volunteer activities, schedule pet care, and organize adoption events.</p>
+                <a href="#volunteer-login" class="btn" style="margin-top: 1rem;">Volunteer Portal</a>
+            </div>
+            <div class="module-card">
+                <div class="module-icon doctor-icon"></div>
+                <h3>Doctor Module</h3>
+                <p>Manage pet health records, schedule check-ups, and provide medical advice.</p>
+                <a href="#doctor-login" class="btn" style="margin-top: 1rem;">Doctor Portal</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pets" id="pets">
+        <h2>Pets Available for Adoption</h2>
+        <p>Meet our adorable friends waiting for their forever homes</p>
+        <div class="pet-gallery">
+            <div class="pet-card">
+                <img src="/api/placeholder/250/200" alt="Dog">
+                <div class="pet-info">
+                    <h3>Max</h3>
+                    <p>Golden Retriever, 2 years</p>
+                    <p>Friendly and energetic, loves to play fetch</p>
+                    <span class="pet-tag">Dog</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="/api/placeholder/250/200" alt="Cat">
+                <div class="pet-info">
+                    <h3>Luna</h3>
+                    <p>Domestic Shorthair, 1 year</p>
+                    <p>Affectionate and playful, enjoys lounging in sunny spots</p>
+                    <span class="pet-tag">Cat</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="/api/placeholder/250/200" alt="Rabbit">
+                <div class="pet-info">
+                    <h3>Thumper</h3>
+                    <p>Dutch Rabbit, 8 months</p>
+                    <p>Curious and gentle, enjoys leafy greens</p>
+                    <span class="pet-tag">Rabbit</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="/api/placeholder/250/200" alt="Bird">
+                <div class="pet-info">
+                    <h3>Skye</h3>
+                    <p>Budgerigar, 6 months</p>
+                    <p>Colorful and chatty, learning to mimic sounds</p>
+                    <span class="pet-tag">Bird</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="/api/placeholder/250/200" alt="Dog">
+                <div class="pet-info">
+                    <h3>Bella</h3>
+                    <p>Beagle, 3 years</p>
+                    <p>Sweet and calm, loves cuddles and walks</p>
+                    <span class="pet-tag">Dog</span>
+                </div>
+            </div>
+            <div class="pet-card">
+                <img src="/api/placeholder/250/200" alt="Cat">
+                <div class="pet-info">
+                    <h3>Oliver</h3>
+                    <p>Maine Coon, 2 years</p>
+                    <p>Majestic and gentle, enjoys being brushed</p>
+                    <span class="pet-tag">Cat</span>
+                </div>
+            </div>
+        </div>
+        <a href="#more-pets" class="btn" style="margin-top: 2rem;">See More Pets</a>
+    </section>
+    
+    <section id="contact" style="background-color: #f1f1f1; padding: 3rem 1rem; text-align: center;">
+        <h2>SponsorShips</h2>
+        <p style="margin-bottom: 2rem;">Witch Item you are going to sponsor!</p>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <form action="/sposorships" method="post">
+                <div style="margin-bottom: 1rem;">
+                    <input name="Name" type="text" placeholder="Your Name" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ddd;">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <select name="email" id="" style="width: 100%;" >
+                        {{#each sellers}}
+                        <option value={{email}} 
+                        >{{userName}}</option>
+                        {{/each}}
+                    </select>
+                    {{!-- <input type="email" placeholder="Your Email" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ddd;"> --}}
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" placeholder="Enter Sponsorship item" name="Sponsorship">
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+     <section id="contact" style="background-color: #f1f1f1; padding: 3rem 1rem; text-align: center;">
+        <h2>Lost and Found</h2>
+        <p style="margin-bottom: 2rem;">Upload Your Pets Information</p>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <form action="/add-lostPets" method="post" enctype="multipart/form-data">
+                <div style="margin-bottom: 1rem;">
+                    <input name="Name" type="text" placeholder="Your Name" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ddd;">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <input type="file" name="img">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" placeholder="Enter Details" name="data">
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>

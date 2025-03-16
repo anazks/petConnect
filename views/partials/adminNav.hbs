@@ -1,0 +1,78 @@
+<style>
+  .navbar-brand,
+  .active {
+    font-family: 'Glegoo', serif;
+  }
+
+  .NavSeller {
+    width: 70px;
+    width: 100%;
+    background: #333;
+    color: rgb(255, 255, 255);
+  }
+
+  .light-text {
+    border: none;
+    color: rgb(218, 216, 216);
+    font-size: 18px;
+    font-weight: 600;
+    background: #333;
+    text-decoration: none;
+  }
+
+  .dropbtn {
+    padding: 5px 10px;
+    background: #fff;
+    color: #333;
+    transition: all .25s;
+  }
+
+  .dropbtn:hover {
+    background: #333;
+    color: #333;
+  }
+
+  body {
+    background: #111
+  }
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" style=" font-size: 25px;font-weight:700;padding:0"
+            href="/home">ADMIN
+            DASHBOARD</a>
+        </li>
+      </ul>
+      <li class="nav-item dropdown">
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="/logout">Logout</a></li>
+        </ul>
+      </li>
+    </div>
+  </div>
+  <div class="d-flex">
+    <a href="/logout" class="btn btn-danger me-3">LogOut</a>
+  </div>
+</nav>
+<div class="NavSeller d-flex align-items-center" style="color:#1e2832;padding-left:200px;font-family: 'Glegoo', serif;">
+  {{#if admin}}
+  <a href="/sellers-list" class="light-text">Shops</a>
+  <a href="/user-list" class="light-text ms-5">Users</a>
+  {{!-- <a href="/consultant-list" class="light-text ms-5">Krishibhavan</a> --}}
+  <a href="/product-list" class="light-text ms-5">Pets</a>
+  <a href="http://localhost:7000" class="light-text ms-5">PetCare Chat</a>
+  <a href="/med-blog-list" class="light-text ms-5">Medical Reports</a>
+  <a href="https://clone-yoom.netlify.app/" class="light-text ms-5">Meetings</a>
+
+  {{!-- <a href="/med-blog-list" class="light-text ms-5">Krishibhavan infos</a> --}}
+  {{!-- <li><a class="dropdown-item" href="/Blocke_sellers">Blocked Seller</a></li> --}}
+  {{/if}}
+
+</div>

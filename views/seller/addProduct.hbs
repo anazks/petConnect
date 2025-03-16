@@ -1,0 +1,71 @@
+<style>
+    body {
+        background: #1e2832;
+    }
+
+    .NavSeller {
+        width: 70px;
+        width: 100%;
+        background: #ffb700;
+        color: #333;
+    }
+
+    .submit-btn {
+        background: #ffb700;
+        border: none;
+        padding: 10px 15px;
+        margin-right: 30px;
+        color: #fff;
+    }
+</style>
+
+<body style="background: #b3ccaf;">
+    <div class="NavSeller">
+        <h5 style="color:white;padding:5px;font-family: 'Glegoo', serif;"><span style="color:#1e2832;">
+                 </span> </h5>
+    </div>
+    <div class="container" style="width: 500px;margin:50px auto; background: #fff;padding:25px">
+        <h1 style="text-align: center;color:#1e2832;font-family: 'Glegoo', serif;margin-bottom:20px">Add New Pets
+        </h1>
+        <form action="/seller/addProduct" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label" style="color: #1e2832;">Breed</label>
+                <input type="text" name="productName" class="form-control" id="exampleInputEmail1"
+                    aria-describedby="emailHelp">
+                {{!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> --}}
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">Amount</label>
+                <input name="mrp" type="number" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">Years Old</label>
+                <input name="price" type="number" class="form-control" id="exampleInputPassword1">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">Health Status</label>
+                <textarea name="description" id="" cols="10" rows="5" class="form-control"></textarea>
+                
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;"> adoption status</label>
+                <input type="text" name="relatedTo" class="form-control" placeholder="adoption status...    ">
+                
+                {{!-- <textarea name="advantages" class="form-control" id="" cols="10" rows="5"></textarea> --}}
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">Size</label>
+                <input type="text" name="size" class="form-control" placeholder="38">
+                {{!-- <textarea name="size" class="form-control" id="" cols="10" rows="5"></textarea> --}}
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label" style="color: #1e2832;">Upload Product
+                    Image</label>
+                <input name="image" type="file" accept="" class="form-control" id="exampleInputPassword1">
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+            <a href="/seller/" class="text-secondary" style="text-decoration: none;">Back to home</a>
+            <br><br>
+        </form>
+    </div>
+</body>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAWS | Virtual Pet Adoption Platform</title>
+  <style>
+    :root {
+      --primary: #4caf50;
+      --secondary: #3e4c59;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --accent: #ff9800;
+      --background: #f5f5f5;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--background);
+      color: var(--secondary);
+    }
+    
+    /* Hero Carousel */
+    .carousel-item img {
+      height: 80vh;
+      object-fit: cover;
+      filter: brightness(0.85);
+    }
+    
+    .carousel-caption {
+      bottom: 30%;
+    }
+    
+    .carousel-caption h2 {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 80%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      font-size: 24px;
+      max-width: 800px;
+      margin: 0 auto 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .carousel-caption p {
+      font-size: 18px;
+      font-weight: 500;
+    }
+    
+    /* Section Titles */
+    .section-title {
+      position: relative;
+      text-align: center;
+      padding: 40px 0 30px;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+    
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 70px;
+      height: 3px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+    }
+    
+    /* Pet Cards */
+    .product-container {
+      padding: 20px 0 50px;
+      background-color: white;
+    }
+    
+    .card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+    
+    .card-img-top {
+      height: 240px;
+      object-fit: cover;
+    }
+    
+    .card-body {
+      padding: 20px;
+    }
+    
+    .product-card .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    
+    .product-card .card-text {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    
+    .product-card .price {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+    
+    .card-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn-cart {
+      flex: 1;
+      background-color: white;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-cart:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-buy {
+      flex: 1;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 12px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-buy:hover {
+      background-color: #3d8b40;
+    }
+    
+    /* Blog Cards */
+    .blog-container {
+      padding: 20px 0 50px;
+    }
+    
+    .blog-card .card-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    .blog-card .card-date {
+      font-size: 14px;
+      color: #6c757d;
+      margin-bottom: 10px;
+    }
+    
+    .blog-card .card-text {
+      color: #444;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+    
+    .btn-like {
+      background-color: white;
+      color: #3b5998;
+      border: 1px solid #3b5998;
+      border-radius: 5px;
+      padding: 8px 20px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      margin: 15px 0;
+    }
+    
+    .btn-like:hover {
+      background-color: #3b5998;
+      color: white;
+    }
+    
+    .like-count {
+      font-weight: 600;
+      margin-right: 10px;
+    }
+    
+    /* Weather Section */
+    .weather-section {
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 10%, rgba(255, 152, 0, 0.1) 100%);
+      padding: 30px;
+      border-radius: 10px;
+      margin: 40px auto;
+      max-width: 800px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .weather-title {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--secondary);
+      font-weight: 600;
+    }
+    
+    .weather-content {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    
+    .weather-item {
+      background-color: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .weather-label {
+      color: var(--primary);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 5px;
+    }
+    
+    .weather-value {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--secondary);
+    }
+    
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, var(--secondary) 0%, var(--dark) 100%);
+      color: white;
+      padding: 50px 0 30px;
+    }
+    
+    .footer-title {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .footer-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+    
+    .icons-group {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+    }
+    
+    .footer-icon {
+      color: white;
+      font-size: 24px;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-icon:hover {
+      color: var(--primary);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .carousel-caption h2 {
+        font-size: 18px;
+        padding: 15px;
+      }
+      
+      .weather-content {
+        grid-template-columns: 1fr;
+      }
+    }
+    .virtual-body-section {
+  text-align: center;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.virtual-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+#virtual-body {
+  width: 400px;
+  height: 500px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.measurement-output {
+  text-align: left;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+#measurement-data {
+  font-size: 16px;
+  font-family: monospace;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Carousel Section -->
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://tse3.mm.bing.net/th?id=OIP.pduxKEYRedvMpP5_YBepZwHaC3&pid=Api&P=0&h=180" class="d-block w-100" alt="Pet Adoption">
+        <div class="carousel-caption d-none d-md-block">
+          {{!-- <h2>"Pets are not our whole life, but they make our lives whole."</h2>
+          <p>- Roger Caras</p> --}}
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://marketplace.canva.com/EAFGKRRskMs/1/0/800w/canva-brown-and-beige-minimalist-fashion-banner-B_78un9z_LQ.jpg" class="d-block w-100" alt="Pet Adoption">
+        <div class="carousel-caption d-none d-md-block">
+          {{!-- <h2>"Until one has loved an animal, a part of one's soul remains unawakened."</h2>
+          <p>- Anatole France</p> --}}
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://images.template.net/108415/fashion-banner-for-website-vj2u8.jpg" class="d-block w-100" alt="Pet Adoption">
+        <div class="carousel-caption d-none d-md-block">
+          {{!-- <h2>"The greatness of a nation can be judged by the way its animals are treated."</h2>
+          <p>- Mahatma Gandhi</p> --}}
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Pets Section -->
+  <div class="product-container">
+    <h2 class="section-title">Pets Available for Adoption</h2>
+    <div class="container">
+      <div class="row">
+        {{#each product}}
+        <div class="col-md-3 col-sm-6 mb-4">
+          <div class="card product-card">
+            <img src="/images/product/{{_id}}.jpg" class="card-img-top" alt="{{productName}}">
+            <div class="card-body text-center" id="product-info">
+              <h6 class="card-title"><b>Shelter Location:</b> {{place}}</h6>
+              <h5 class="card-title">{{productName}}</h5>
+              <p class="card-title">About Me: {{description}}</p>
+              <p class="card-text">{{description}}</p>
+              <p class="price">Adoption Fee: ₹{{price}}</p>
+            </div>
+            <div class="card-buttons p-3">
+              <a href="/users/addtoCart/{{_id}}" class="btn-cart">Add to Favorites</a>
+              <a href="/users/buynow/{{_id}}/1" class="btn-buy">Adopt Now</a>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Blogs Section -->
+  <div class="blog-container">
+    <h2 class="section-title">Pet Care Tips & Stories</h2>
+    <div class="container">
+      <div class="row">
+        {{#each sellers}}
+        <div class="col-md-5 mb-4">
+          <div class="card blog-card">
+            <h3 style="text-align: center;">Pet Care Center</h3>
+            {{!-- <img src="/images/medBlog/{{_id}}.jpg" class="card-img-top" alt="{{title}}"> --}}
+                  <a href="http://localhost:7000/chat.html?username={{seller.userName}}&room=Room+1" 
+                  class="btn btn-outline-success" >Chat Now</a>
+            <div class="card-body">
+              <h4 class="card-title">{{userName}}</h4>
+              <p class="card-date">{{email}}</p>
+              <p class="card-text">{{mobile}}</p>
+            </div>
+            <div class="text-center">
+              <a href="/users/like/{{email}}" class="btn-like">
+                <span class="like-count">{{likes.length}}</span>
+                <i class="fa-solid fa-book"></i>Schedule Visit
+              </a>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Weather Section -->
+  <div class="weather-section">
+    <h2 class="weather-title">Today's Weather <i class="fa-solid fa-cloud"></i></h2>
+    <div class="weather-content">
+      <div class="weather-item">
+        <div class="weather-label">
+          <i class="fa-solid fa-cloud-sun"></i> Cloud Status
+        </div>
+        <h3 class="weather-value" id="cloud"></h3>
+      </div>
+      <div class="weather-item">
+        <div class="weather-label">
+          <i class="fa-solid fa-cloud-bolt"></i> Cloud Description
+        </div>
+        <h3 class="weather-value" id="des"></h3>
+      </div>
+      <div class="weather-item">
+        <div class="weather-label">
+          <i class="fa-solid fa-temperature-high"></i> Temperature
+        </div>
+        <h3 class="weather-value" id="temp"></h3>
+      </div>
+      <div class="weather-item">
+        <div class="weather-label">
+          <i class="fa-solid fa-droplet"></i> Humidity
+        </div>
+        <h3 class="weather-value" id="hum"></h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <section class="footer">
+    <div class="container">
+      <h2 class="footer-title">
+        CONNECT WITH US
+      </h2>
+      <div class="icons-group">
+        <i class="fa-solid fa-envelope fa-2x footer-icon"></i>
+        <i class="fa-brands fa-twitter fa-2x footer-icon"></i>
+        <i class="fa-brands fa-facebook fa-2x footer-icon"></i>
+        <i class="fa-brands fa-instagram fa-2x footer-icon"></i>
+        <i class="fa-brands fa-pinterest fa-2x footer-icon"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script>
+    console.log("working...")
+    const apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=thrissur&units=metric&appid=076465d2e663be277c6d13a3991ca3b6';
+    const currentDate = new Date();
+            
+    fetch(apiUrl).then(response =>{
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }   
+      return response.json();
+    }).then(data =>{
+      const weatherData = data;
+      console.log(weatherData)
+      document.getElementById('cloud').innerHTML = weatherData.weather[0].main
+      document.getElementById('des').innerHTML = weatherData.weather[0].description
+      console.log(weatherData.main)
+      document.getElementById('temp').innerHTML = weatherData.main.temp + "°C"
+      document.getElementById('hum').innerHTML = weatherData.main.humidity + "%"
+    })
+  
+    var myDiv = $('#product-info');
+    myDiv.text(myDiv.text().substring(0, 200))
+    
+  </script>
+</body>
+</html>

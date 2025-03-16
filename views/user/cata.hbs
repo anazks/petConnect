@@ -1,0 +1,21 @@
+<div class="row">
+  {{#each product}}
+  <div class="col-sm-3" style="margin-left: 0px; height: 500px">
+    <div class="card" style="width: 15rem; height:78%">
+      <img src="/images/product/{{this.Image}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h6 class="card-title"><b>Product from:</b>{{this.place}}</h6>
+        <h6 class="card-title">{{this.Product_id}}</h6>
+        <h5 class="card-title">{{this.Product_name}}</h5>
+        <p class="card-text">{{this.Description}}</p>
+        <p class="card-text">{{this.Price}}/kg</p>
+      </div>
+      <div class="bottom">
+        <a href="/users/addtoCart/{{this.id}}" class="btn btn-primary">Add to Cart</a>
+        <a href="/users/buynow/{{this.id}}/{{this.Price}}/1/{{this.sellerID}}" class="btn btn-warning">Buy Now</a>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>
+</div>

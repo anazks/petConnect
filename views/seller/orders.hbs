@@ -1,0 +1,44 @@
+{{> sellerNav}}
+
+
+<div class="container">
+  <h1 class="text-secondary text-center mt-3 p-3">{{title}}</h1>
+  <div class="card mb-3" style="max-width:100%;border:none">
+    <div class="row g-0" style="border: none;">
+      {{#if completed}}
+      {{#each orders}}
+      <div class="col-md-4 cart mb-3" style="margin-top: 10px;border:none">
+        <img style="height:100%;" src="/images/product/{{productId}}.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8 cart mb-3" style="margin-top: 10px;border:none">
+        <div class="card-body">
+          <h5 class="card-title">{{productName}}</h5>
+          <p class="card-text">Quantity : {{quantity}}</p>
+          <h6><b>Status</b>:{{this.status}}</h6>
+          <h6><b>User Name </b>:{{buyerName}}</h6>
+          <h6><b>User Email </b>:{{buyerEmail}}</h6>
+          <h6><b>Amount</b>:{{totalPrice}}.Rs. <b>Paid</b></h6>
+          <a href="/seller/shipped/{{_id}}" class="btn btn-success"> Ship the Order</a>
+        </div>
+      </div>
+      {{/each}}
+      {{else}}
+      {{#each orders}}
+      <div class="col-md-4 cart mb-3" style="margin-top: 10px;border:none">
+        <img style="height:100%;" src="/images/product/{{productId}}.jpg" class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8 cart mb-3" style="margin-top: 10px;border:none">
+        <div class="card-body">
+          <h5 class="card-title">{{productName}}</h5>
+          <p class="card-text">Quantity : {{quantity}}</p>
+          <h6><b>Status</b>:{{this.status}}</h6>
+          <h6><b>User Name </b>:{{buyerName}}</h6>
+          <h6><b>User Email </b>:{{buyerEmail}}</h6>
+          <h6><b>Amount</b>:{{totalPrice}}.Rs. <b>Paid</b></h6>
+        </div>
+      </div>
+      {{/each}}
+      {{/if}}
+    </div>
+  </div>
+</div>

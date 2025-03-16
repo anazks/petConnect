@@ -1,0 +1,345 @@
+{{! Shop Products HBS Template }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Products</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<style>
+    :root {
+    --primary-pink: #FF80AB;
+    --secondary-pink: #F48FB1;
+    --light-pink: #FCE4EC;
+    --dark-pink: #C2185B;
+    --accent-pink: #FF4081;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFF5F8;
+    color: #333;
+}
+
+.navbar {
+    background-color: var(--primary-pink);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: white;
+}
+
+.page-header {
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    color: white;
+    padding: 30px 0;
+    margin-bottom: 40px;
+    border-radius: 0 0 25px 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-img-container {
+    height: 200px;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+}
+
+.product-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.product-card:hover .product-img-container img {
+    transform: scale(1.05);
+}
+
+.product-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--accent-pink);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.product-origin {
+    color: var(--dark-pink);
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.product-name {
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.product-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--dark-pink);
+    margin-bottom: 15px;
+}
+
+.card-footer {
+    background-color: transparent;
+    border-top: 1px solid var(--light-pink);
+    padding: 15px 20px;
+}
+
+.btn-cart {
+    background-color: var(--light-pink);
+    color: var(--dark-pink);
+    border: none;
+    transition: all 0.3s;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.btn-cart:hover {
+    background-color: var(--primary-pink);
+    color: white;
+}
+
+.btn-buy {
+    background-color: var(--accent-pink);
+    color: white;
+    border: none;
+    transition: all 0.3s;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+.btn-buy:hover {
+    background-color: var(--dark-pink);
+    box-shadow: 0 5px 15px rgba(194, 24, 91, 0.4);
+}
+
+.footer {
+    background: linear-gradient(135deg, var(--dark-pink), var(--primary-pink));
+    color: white;
+    padding: 40px 0 30px;
+    margin-top: 60px;
+    border-radius: 25px 25px 0 0;
+}
+
+.footer-title {
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-title:after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background-color: white;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    transition: all 0.3s;
+}
+
+.social-icon:hover {
+    background-color: white;
+    color: var(--dark-pink);
+    transform: translateY(-5px);
+}
+
+@media (max-width: 767px) {
+    .product-card {
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+</style>
+<body>
+   {{! Shop Products HBS Template }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Products</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <br><br>
+
+    <!-- Festival Selection -->
+    <div class="container text-center my-4">
+        <div class="btn-group" role="group" aria-label="Festival Selection">
+            <button class="btn btn-primary festival-btn" data-festival="onam">Onam</button>
+            <button class="btn btn-danger festival-btn" data-festival="christmas">Christmas</button>
+            <button class="btn btn-success festival-btn" data-festival="ramadan">Ramadan</button>
+        </div>
+    </div>
+    
+    <!-- Products Section -->
+    <div class="container">
+        <div id="products-row" class="row">
+            {{#each products}}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="/images/product/{{_id}}.jpg" alt="{{this.productName}}">
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="product-origin mb-1">From: {{this.place}}</p>
+                        <h5 class="product-name">{{this.productName}}</h5>
+                        <h6 class="fst-italic mb-2">{{this.Product_name}}</h6>
+                        <p class="product-description">{{this.description}}</p>
+                        <div class="product-price">₹{{this.price}}</div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="/users/addtoCart/{{this._id}}" class="btn btn-cart flex-grow-1 me-2">
+                            <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                        </a>
+                        <a href="/users/buynow/{{this._id}}/1" class="btn btn-buy flex-grow-1">
+                            <i class="fas fa-bolt me-1"></i> Buy Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <h3 class="footer-title">CONTACT US</h3>
+            <div class="social-icons mt-4">
+                <a href="#" class="social-icon">
+                    <i class="fa-solid fa-envelope fa-lg"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fa-brands fa-twitter fa-lg"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fa-brands fa-facebook fa-lg"></i>
+                </a>
+                <a href="#" class="social-icon">
+                    <i class="fa-brands fa-instagram fa-lg"></i>
+                </a>
+            </div>
+            <div class="mt-4">
+                <p>© 2025 PinkShop. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.festival-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const festival = button.getAttribute('data-festival');
+                console.log(festival)
+                fetch(`http://localhost:5000/users/getVestivalItems/${festival}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data)
+                        const productsRow = document.getElementById('products-row');
+                        productsRow.innerHTML = '';
+                        data.forEach(product => {
+                            productsRow.innerHTML += `
+                                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                    <div class="product-card">
+                                        <div class="product-img-container">
+                                            <img src="/images/product/${product._id}.jpg" alt="${product.productName}">
+                                            <span class="product-badge">New</span>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="product-origin mb-1">From: ${product.place}</p>
+                                            <h5 class="product-name">${product.productName}</h5>
+                                            <p class="product-description">${product.description}</p>
+                                            <div class="product-price">₹${product.price}</div>
+                                        </div>
+                                        <div class="card-footer d-flex justify-content-between">
+                                            <a href="/users/addtoCart/${product._id}" class="btn btn-cart flex-grow-1 me-2">
+                                                <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+                                            </a>
+                                            <a href="/users/buynow/${product._id}/1" class="btn btn-buy flex-grow-1">
+                                                <i class="fas fa-bolt me-1"></i> Buy Now
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>`;
+                        });
+                    });
+            });
+        });
+    </script>
+</body>
+</html>

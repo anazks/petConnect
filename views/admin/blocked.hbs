@@ -1,0 +1,64 @@
+<body style="background: rgb(141,230,125);
+background: linear-gradient(90deg, rgba(141,230,125,0.9528186274509804) 14%, rgba(12,208,44,0.6026785714285714) 80%);">
+  
+  
+  
+<nav class="navbar navbar-expand-lg navbar-light bg-success">
+  <div class="container-fluid">
+   <a href="/logout" class="btn btn-outline-danger">LogOut</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/sellers">Sellers</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Blocke_sellers">Blocked Sellers</a>
+        </li>
+        <li class="nav-item dropdown">
+    
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/=logout">Logout</a></li>
+          </ul>
+      
+        </li>
+       
+      </ul>
+      {{!-- <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> --}}
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Seller ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Place</th>
+        <th scope="col">action</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each seller}}
+    <tr>
+      <th scope="row">{{this.id}}</th>
+      <td>{{this.Name}}</td>
+      <td>{{this.data}}</td>
+      <td><iframe src="/images/report/{{_id}}" frameborder="0"></iframe></td>
+       {{!-- <td> <a href="/unblock/{{this.id}}" class="btn btn-success">UnBlock</a></td> --}}
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+</div>
+</body>

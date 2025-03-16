@@ -1,0 +1,127 @@
+<style>
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 16px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+</style>
+<section>
+    <form action="/autoReminder" method="post">
+      <input type="text" name="Name" placeholder="Enter Reminder Data">
+      <input type="submit" value="Auto Reminder">
+    </form>
+</section>
+<div class="container bg-light" style="margin-top: 50px;">
+  <h2 class="pt-3" style="text-align: center;">Newly Added Pets</h2>
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Discription</th>
+        <th scope="col">Price</th>
+        <th scope="col">Image</th>
+        <th scope="col">Seller Name</th>
+        {{!-- <th scope="col">delete</th> --}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each products}}
+      <tr>
+        <th scope="row">{{productName}}</th>
+        {{!-- <td>{{this.Product_id}}</td> --}}
+        <td>{{description}}</td>
+        <td>{{price}}</td>
+        <td> <img style="height: 50px; width:50px" src="/images/product/{{_id}}.jpg" alt=""> </td>
+        <td>{{sellerName}}</td>
+        <td>
+          {{!-- <a class="btn btn-success" href="/approve-product/{{_id}}">Approve</a>
+          <a class="btn btn-danger" href="/reject-product/{{_id}}">Reject</a> --}}
+        </td>
+      </tr>
+      {{/each}}
+
+    </tbody>
+  </table>
+  <div class="row">
+  </div>
+</div>
+
+  <h2 class="pt-3" style="text-align: center;color:white">Newly Added Events</h2>
+  <table class="table mt-4" style="color: white;width:80%;margin:auto">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Date Added</th>
+        <th scope="col">Content</th>
+        <th scope="col">Author</th>
+        {{!-- <th scope="col">Action</th> --}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each medBlogs}}
+      <tr>
+        <th scope="row">{{title}}</th>
+        <td>{{date}}</td>
+        <td>{{content}}</td>
+        <td>{{consultantName}}</td>
+        {{!-- <td>
+          <a class="btn btn-success" href="/approve-med-blog/{{_id}}">Approve</a>
+          <a class="btn btn-danger" href="/reject-med-blog/{{_id}}">Reject</a>
+        </td> --}}
+      </tr>
+      {{/each}}
+
+    </tbody>
+  </table>
+  <div class="row">
+  </div>
+</div>
+<br><br><br><br><br>
+ <section id="contact" style="width: 60%;margin:auto;border:1px solid white;margin-top:10px;color:wheat">
+        <h2>Health Reports</h2>
+        <p style="margin-bottom: 2rem;">Upload Health Report</p>
+        <div style="max-width: 600px; margin: 0 auto;">
+            <form action="/add-healthReport" method="post" enctype="multipart/form-data">
+                <div style="margin-bottom: 1rem;">
+                    <input name="Name" type="text" placeholder="Pet Name" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ddd;">
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <input type="file" name="img">
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <input type="text" placeholder="Enter Details" name="data">
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>

@@ -1,0 +1,25 @@
+<div class="container p-2 bg-light mt-5">
+    <h2 class="text-center m-3">Pets List</h2>
+    <table class="table bg-light p-2">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">MRP</th>
+                <th scope="col">Selling Price</th>
+                <th scope="col">Seller Name</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+            <tr>
+                <td scope="row">{{productName}}</td>
+                <td>{{mrp}}</td>
+                <td>{{price}}</td>
+                <td>{{sellerName}}</td>
+                <td><a href="/delete-product/{{_id}}" class="btn btn-danger">Delete</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

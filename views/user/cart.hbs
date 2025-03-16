@@ -1,0 +1,315 @@
+<style>
+  /* General Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.container {
+  margin-top: 20px;
+  min-height: 45vh;
+  padding: 0 15px;
+}
+
+/* Cart Header Styles */
+h1.text-center {
+  font-weight: 700;
+  color: #343a40;
+  border-bottom: 2px solid #f5b397;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+/* Price Information Styles */
+h2.text-end {
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 5px;
+}
+
+h3.text-end {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.text-success {
+  color: #28a745 !important;
+  font-weight: 500;
+}
+
+/* Card Styles */
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.cart {
+  transition: all 0.3s ease;
+}
+
+.img-fluid {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #495057;
+  margin-bottom: 15px;
+}
+
+/* Button Styles */
+.btn {
+  border-radius: 5px;
+  padding: 8px 15px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-light {
+  background-color: #fff;
+  color: #343a40;
+  border: 1px solid #dee2e6;
+}
+
+.btn-light:hover {
+  background-color: #f8f9fa;
+  color: #f5b397;
+  border-color: #f5b397;
+}
+
+/* Empty Cart Message */
+h1.text-secondary {
+  color: #6c757d;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* Footer Styles */
+.footer {
+  background: linear-gradient(to right, #343a40, #212529);
+  color: #fff;
+  height: 30vh;
+  margin-top: 5rem !important;
+  border-top: 5px solid #f5b397;
+}
+
+.footer-wrapper {
+  padding: 20px 0;
+}
+
+.footer-title {
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-title:after {
+  content: '';
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background-color: #f5b397;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.icons-group {
+  transition: all 0.3s ease;
+}
+
+.fa-solid, .fa-brands {
+  cursor: pointer;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.fa-solid:hover, .fa-brands:hover {
+  color: #f5b397;
+  transform: scale(1.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100% !important;
+  }
+  
+  .col-md-4, .col-md-8 {
+    width: 100%;
+  }
+  
+  .img-fluid {
+    height: 300px;
+  }
+  /* Recommendation Section Styles */
+.recommendations-container {
+  padding: 20px 0;
+}
+
+.recommendations-container h2 {
+  font-weight: 700;
+  color: #343a40;
+  border-bottom: 2px solid #f5b397;
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.recommendations-container .card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+}
+
+.recommendations-container .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.recommendations-container .card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.recommendations-container .card-title {
+  font-weight: 600;
+  color: #343a40;
+}
+
+.recommendations-container .card-text {
+  color: #495057;
+  font-size: 0.9rem;
+}
+
+.recommendations-container .btn-light:hover {
+  background-color: #f5b397;
+  color: #fff;
+  border-color: #f5b397;
+}
+
+/* Responsive Adjustments for Recommendations */
+@media (max-width: 768px) {
+  .recommendations-container .row {
+    flex-direction: column;
+  }
+  
+  .recommendations-container .col {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+}
+</style>
+<body>
+  <script>
+    function myfunction(){
+      console.log(products,"products")
+      let cata = document.getElementById("related").innerHTML
+      console.log(cata,"cata")
+    }
+  </script>
+
+<div class="container" style="margin-top:10px;min-height:45vh">
+  <h1 class="text-center m-3 p-3">Cart</h1>
+  {{#if products}}
+  <h2 class="text-end">Total Price : ₹{{total}}</h2>
+  <strike>
+    <h3 class="text-end text-secondary">Total MRP : ₹{{totalMRP}}</h2>
+  </strike>
+  <h3 class="text-end text-success">You will save : ₹{{saved}}</h2>
+    <div class="card mb-3" style="max-width:50%;">
+      <div class="row g-0  ">
+        {{#each products}}
+        <div class="col-md-4 cart" style="margin-top: 0px;border:none">
+          <img src="/images/product/{{item._id}}.jpg" class="img-fluid rounded-start" style="height: 100%;" alt="...">
+        </div>
+        <div class="col-md-8 cart" style="margin-top: 0px;border:none;background:#f5b397">
+          <div class="card-body">
+            <h5 class="card-title">{{item.productName}}</h5>
+            <p class="card-text" id="related">{{item.relatedTo}}</p>
+            <h6>Price:₹{{item.price}}</h6>
+            <h6 class="card-title">Quantity:{{quantity}}</h6>
+            {{!-- <a class="btn btn-primary" href="/users/qnty_decrement/{{_id}}" role="button">-</a>
+            <a class="btn btn-primary" href="/users/qnty_increment/{{_id}}" role="button">+</a> --}}
+            <a class="btn btn-light" href="/users/buynow/{{item._id}}/{{quantity}}" role="button">Buy Now</a>
+            {{!-- <a class="btn btn-danger" href="/users/remove-product/{{item._id}}" role="button">Remove</a> --}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{else}}
+    <h1 class="text-center m-3 p-3 text-secondary">Your Cart is Empty ....</h1>
+    {{/if}}
+
+</div>
+<!-- Recommendation Section -->
+<div class="container recommendations-container mb-5">
+  <h2 class="text-center m-3 p-2">You May Also Like</h2>
+  
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Recommended Product 1 -->
+    {{#each newProducts}}
+    <div class="col">
+      <div class="card h-100">
+        <img src="/images/product/{{_id}}.jpg" class="card-img-top" alt="Recommended Product">
+        <div class="card-body">
+          <h5 class="card-title">{{productName}}</h5>
+          <p class="card-text">Handcrafted genuine leather wallet with multiple card slots and RFID protection.</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <strike class="text-secondary">₹1,999</strike>
+              <h6 class="mb-0">{{mrp}}</h6>
+            </div>
+            <a href="/product/details/recommended1" class="btn btn-light">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+    <!-- Recommended Product 2 -->
+   
+    
+    <!-- Recommended Product 3 -->
+    
+  </div>
+</div>
+<section class="footer bg-dark mt-5 text-light" style="height:30vh">
+  <div class="footer-wrapper">
+    <h2 class="footer-title text-center pt-3">
+      CONTACT US
+    </h2>
+    <div class="icons-group d-flex justify-content-center mt-5">
+      <i class="fa-solid fa-envelope me-5 fa-3x" class="footer-icon"></i>
+      <i class="fa-brands fa-twitter me-5 fa-3x" class="footer-icon"></i>
+      <i class="fa-brands fa-facebook fa-3x" class="footer-icon"></i>
+    </div>
+  </div>
+</section>
+
+
+
+  
+</body>

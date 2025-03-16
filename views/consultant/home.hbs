@@ -1,0 +1,103 @@
+<style>
+    .profile-wrapper {
+        margin-top: 20px;
+        color: white;
+        padding: 20px;
+    }
+
+    .profile-text {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .profile-content {
+        color: #00be66;
+    }
+
+    .delete-btn {
+        background: #fc3131;
+        text-decoration: none;
+        color: #fff;
+        padding: 5px 10px;
+    }
+</style>
+<div class="container2 p-2" style="width: 50vw;margin-top:50px;margin-left:100px;background:rgb(199, 199, 199)">
+    <h2 style="text-align:center">Your Products</h2>
+    <div class="container" style="margin-top: 30px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date added </th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each medBlogs}}
+                <tr>
+                    <th scope="row">{{title}}</th>
+                    <td>{{date}}</td>
+                    <td>{{content}}</td>
+                    <td>{{status}}</td>
+                    <td> <a href="/consultant/delete/{{_id}}" class="delete-btn">Delete</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="row">
+            {{!-- <a href="/addProduct" class="btn btn-success ">Add Product</a> --}}
+        </div>
+    </div>
+</div>
+
+<div class="container3 p-4">
+    <h2 class="text-light">Your Profile</h2>
+    <div class="profile-wrapper">
+        <p class="profile-text">
+            Name <span class="profile-content"> {{consultant.userName}}</span>
+        </p>
+        <p class="profile-text">
+            Email <span class="profile-content"> {{consultant.email}}</span>
+        </p>
+        <p class="profile-text">
+            Place <span class="profile-content"> {{consultant.place}}</span>
+        </p>
+        <p class="profile-text">
+            Contact No. <span class="profile-content"> {{consultant.mobile}}</span>
+        </p>
+    </div>
+    <a href="" class="btn p-1 " style="background:#00be66;align-self:flex-end">Update Profile</a>
+</div>
+</div>
+
+
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/consultant/addoffer" method="post" enctype="multipart/form-data">
+
+                    <legend>Add Offers To Banner</legend>
+                    <div class="mb-3">
+                        <label for="disabledSelect" class="form-label">Image</label>
+                        <input type="file" name="uploaded_image" accept="">
+                    </div>
+                    <div class="mb-3">
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">AddProduct</button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

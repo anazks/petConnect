@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paws & Hearts | Pet Adoption Login</title>
+  <style>
+    :root {
+      --primary: #4CAF50;
+      --secondary: #3e4c59;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --accent: #FF9800;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 10%, rgba(255, 152, 0, 0.1) 100%);
+    }
+    
+    .container {
+      display: flex;
+      max-width: 900px;
+      height: 550px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .left-panel::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .left-panel::after {
+      content: "";
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .brand {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .tagline {
+      font-size: 18px;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .features {
+      list-style: none;
+      margin-top: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .features li {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .features li::before {
+      content: "🐾";
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    .right-panel {
+      flex: 1;
+      background-color: white;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    h2 {
+      color: var(--secondary);
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    p {
+      color: #6c757d;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ced4da;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #6c757d;
+    }
+    
+    .form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+    
+    .remember-me input {
+      margin-right: 8px;
+    }
+    
+    .forgot-password {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .submit-btn:hover {
+      background-color: #45a049;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      color: #6c757d;
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: #dee2e6;
+    }
+    
+    .divider span {
+      padding: 0 15px;
+    }
+    
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .social-btn:hover {
+      background-color: #e9ecef;
+    }
+    
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+      color: #6c757d;
+    }
+    
+    .register-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .register-link a:hover {
+      text-decoration: underline;
+    }
+    
+    .role-selector {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .role-btn {
+      padding: 8px 15px;
+      border: 1px solid #ced4da;
+      border-radius: 20px;
+      background-color: white;
+      color: #6c757d;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .role-btn.active {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .role-btn:hover:not(.active) {
+      background-color: #f8f9fa;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+        max-width: 90%;
+      }
+      
+      .left-panel {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <h1 class="brand">Paws & Hearts</h1>
+      <p class="tagline">Join our mission to find loving homes for every pet in need.</p>
+      <ul class="features">
+        <li>Find your perfect furry companion</li>
+        <li>Access medical records and adoption history</li>
+        <li>Connect with veterinarians and pet experts</li>
+        <li>Join our community of passionate pet lovers</li>
+      </ul>
+    </div>
+    <div class="right-panel">
+      <div class="login-header">
+        <h2>Welcome Back</h2>
+        <p>Sign in to continue your pet adoption journey</p>
+      </div>
+      <div class="role-selector">
+        <button class="role-btn active">User</button>
+        <button class="role-btn">Admin</button>
+        <button class="role-btn">Volunteer</button>
+        <button class="role-btn">Doctor</button>
+      </div>
+      <form method="post" action="/users/login">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="password-container">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+            <span class="toggle-password">👁️</span>
+          </div>
+        </div>
+        <div class="form-footer">
+          <div class="remember-me">
+            <input type="checkbox" id="remember">
+            <label for="remember">Remember me</label>
+          </div>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+        <button type="submit" class="submit-btn">Sign In</button>
+        <div class="divider">
+          <span>or continue with</span>
+        </div>
+        <div class="social-login">
+          <div class="social-btn">G</div>
+          <div class="social-btn">f</div>
+          <div class="social-btn">in</div>
+        </div>
+        <div class="register-link">
+          Don't have an account? <a href="/users/signup">Create Account</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Simple script to toggle between role buttons
+    document.querySelectorAll('.role-btn').forEach(button => {
+      button.addEventListener('click', function() {
+        document.querySelectorAll('.role-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        this.classList.add('active');
+      });
+    });
+
+    // Password visibility toggle
+    document.querySelector('.toggle-password').addEventListener('click', function() {
+      const passwordInput = document.querySelector('#password');
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+    });
+  </script>
+</body>
+</html>

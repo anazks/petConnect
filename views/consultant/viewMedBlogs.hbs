@@ -1,0 +1,68 @@
+<style>
+    .profile-wrapper {
+        margin-top: 20px;
+        color: white;
+        padding: 20px;
+    }
+
+    .profile-text {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .profile-content {
+        color: #ffb700;
+    }
+
+    .delete-btn {
+        background: #fc3131;
+        text-decoration: none;
+        color: #fff;
+        padding: 5px 10px;
+    }
+
+    .approved {
+        color: rgb(3, 199, 3);
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .not {
+        color: #fc3131;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+</style>
+<div class="container2 p-2" style="width: 80vw;margin-top:50px;margin-left:100px;background:rgb(199, 199, 199)">
+    <h2 style="text-align:center">{{title}}</h2>
+    <div class="container" style="margin-top: 30px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Discription</th>
+                    <th scope="col">Date added</th>
+                    <th scope="col">Likes</th>
+                    <th scope="col">image</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each medBlogs}}
+                <tr>
+                    <th scope="row">{{title}}</th>
+                    <td>{{content}}</td>
+                    <td>{{date}}</td>
+                    <td>{{likes.length}}</td>
+                    <td> <img style="height: 50px; width:50px" src="/images/medBlog/{{_id}}.jpg" alt=""> </td>
+                    <td class={{status}}> {{status}}
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="row">
+            {{!-- <a href="/addProduct" class="btn btn-success ">Add Product</a> --}}
+        </div>
+    </div>
+</div>

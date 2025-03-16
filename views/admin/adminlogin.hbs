@@ -1,0 +1,38 @@
+<style>
+  body {
+    background-color: rgb(209, 209, 209);
+  }
+
+  .navAdmin {
+    width: 100%;
+    height: 70px;
+    background: #fff;
+  }
+
+  .welcomeNote {
+    text-align: center;
+    color: rgb(36, 36, 36);
+  }
+</style>
+
+<body style="">
+  <div class="navAdmin">
+    <h1 class="welcomeNote pt-2"> <b>ADMIN LOGIN</b></h1>
+  </div>
+  <div class="container p-4 bg-light"
+    style="margin-top:100px;width:500px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;">
+    <form action="/login" method="post">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label" style="text-align: center;">USER ID</label>
+        <input type="text" name="userId" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">PASSWORD</label>
+        <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+</body>

@@ -1,0 +1,25 @@
+<div class="container p-2 bg-light mt-5">
+    <h2 class="text-center m-3">Medicinal Consultants List</h2>
+    <table class="table bg-light p-2">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Place</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each consultants}}
+            <tr>
+                <td scope="row">{{userName}}</td>
+                <td>{{email}}</td>
+                <td>{{place}}</td>
+                <td>{{mobile}}</td>
+                <td><a href="/block-med-consultant/{{_id}}" class="btn btn-danger">Block</a></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
