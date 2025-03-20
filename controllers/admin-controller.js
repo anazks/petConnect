@@ -351,6 +351,18 @@ const   adminLoginPage = (req,res)=>{
         console.log(error)
     }
 }
+const preAdminPage =  async (req,res)=>{
+    let users = await userModel.find({})
+    let sellers = await sellerModel.find({})  
+    let consultants = await ConsultantModel.find({})
+    let products = await ProductModel.find({})
+    let medBlogs = await medBlogModel.find({})
+    let coutUsers = users.length;
+    let countSellers = sellers.length;  
+    let countConsultants = consultants.length;
+    let countProducts = products.length;
+    res.render('admin/preAdminPage',{users,sellers,consultants,products,medBlogs,coutUsers,countSellers,countConsultants,countProducts})
+}
 module.exports = {
     getMainHomePage,
     getLoginPage,
@@ -375,5 +387,6 @@ module.exports = {
     addlostPets,
     addhealthReport,
     autoReminder,
-    adminLoginPage
+    adminLoginPage,
+    preAdminPage
 }

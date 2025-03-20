@@ -26,7 +26,8 @@ const {
   addlostPets,
   addhealthReport,
   autoReminder,
-  adminLoginPage
+  adminLoginPage,
+  preAdminPage
 } = require("../controllers/admin-controller")
 
 
@@ -59,5 +60,6 @@ router.post('/add-lostPets',addlostPets)
 router.post('/add-healthReport',addhealthReport)
 router.post('/autoReminder',autoReminder)
 router.get('/adminLoginPage',adminLoginPage)
+router.get('/preAdmin',preAdminPage)
 module.exports = router;
 

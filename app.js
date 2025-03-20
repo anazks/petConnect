@@ -1,4 +1,3 @@
-
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -20,21 +19,6 @@ const Order = require('./models/order-model');
 const Seller = require('./models/seller-model');
 const User = require('./models/user-model');
 
-// Database Connection Function
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect("mongodb+srv://user:123@cluster0.xawpc.mongodb.net/petCare?retryWrites=true&w=majority&appName=Cluster0", {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
-  } catch (error) {
-    console.error(`Database Connection Error: ${error.message}`);
-    process.exit(1);
-  }
-};
-
 // Import Routes
 const adminRouter = require('./routes/admin');
 const usersRouter = require('./routes/users');
@@ -46,6 +30,9 @@ const app = express();
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+// Register Handlebars Partials
+hbs.registerPartials(__dirname + "/views/partials");
 
 // Session Configuration
 app.use(session({
@@ -72,65 +59,171 @@ app.use((req, res, next) => {
   }
 });
 
-// Setup AdminJS
+// Database Connection Function
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect("mongodb+srv://user:123@cluster0.xawpc.mongodb.net/petCare?retryWrites=true&w=majority&appName=Cluster0", {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    return conn;
+  } catch (error) {
+    console.error(`Database Connection Error: ${error.message}`);
+    process.exit(1);
+  }
+};
+
+// Setup AdminJS - Fixed implementation using ESM import syntax
 async function setupAdmin() {
   try {
-    const AdminJS = (await import('adminjs')).default;
-    const AdminJSExpress = (await import('@adminjs/express')).default;
-    const AdminJSMongoose = (await import('@adminjs/mongoose')).default;
+    // Import AdminJS modules dynamically for ESM compatibility
+    const AdminJS = await import('adminjs');
+    const AdminJSExpress = await import('@adminjs/express');
+    const AdminJSMongoose = await import('@adminjs/mongoose');
 
-    AdminJS.registerAdapter({
+    // Register the adapter
+    AdminJS.default.registerAdapter({
       Database: AdminJSMongoose.Database,
       Resource: AdminJSMongoose.Resource,
     });
 
-    const admin = new AdminJS({
+    // Create AdminJS instance
+    const admin = new AdminJS.default({
       databases: [mongoose],
       rootPath: "/admin",
+      resources: [
+        { 
+          resource: User,
+          options: {
+            navigation: {
+              name: 'Users',
+              icon: 'User',
+            },
+          },
+        },
+        { 
+          resource: Seller,
+          options: {
+            navigation: {
+              name: 'Sellers',
+              icon: 'Shop',
+            },
+          },
+        },
+        { 
+          resource: Consultant,
+          options: {
+            navigation: {
+              name: 'Consultants',
+              icon: 'User',
+            },
+          },
+        },
+        { 
+          resource: Cart,
+          options: {
+            navigation: {
+              name: 'Carts',
+              icon: 'Cart',
+            },
+          },
+        },
+        { 
+          resource: Order,
+          options: {
+            navigation: {
+              name: 'Orders',
+              icon: 'Package',
+            },
+          },
+        },
+        { 
+          resource: Health,
+          options: {
+            navigation: {
+              name: 'Health Reports',
+              icon: 'Heart',
+            },
+          },
+        },
+        { 
+          resource: MedicinalBlog,
+          options: {
+            navigation: {
+              name: 'Medicinal Blogs',
+              icon: 'Document',
+            },
+          },
+        },
+        { 
+          resource: News,
+          options: {
+            navigation: {
+              name: 'News',
+              icon: 'Newspaper',
+            },
+          },
+        }
+      ],
+      dashboard: {
+        handler: async () => {
+          return { 
+            redirectUrl: '/admin/resources/User' 
+          };
+        },
+      },
+      branding: {
+        companyName: 'Pet Care Admin',
+        logo: '',
+        favicon: '',
+        softwareBrothers: false
+      },
+      assets: {
+        styles: ['/admin-custom.css'],
+      },
     });
 
-    const router = AdminJSExpress.buildRouter(admin);
+    // Create the router for AdminJS
+    const router = AdminJSExpress.default.buildRouter(admin);
+    
+    // Serve custom CSS
+    app.get('/admin-custom.css', (req, res) => {
+      res.type('text/css');
+      res.send(`
+        /* Hide default elements */
+        .adminjs-DocumentationLink,
+        .adminjs-SoftwareBrothers-link,
+        .adminjs-Version,
+        footer,
+        .adminjs-WelcomeMessage,
+        .adminjs-Dashboard-Cards,
+        .adminjs-Dashboard-Card,
+        .adminjs-Illustration {
+          display: none !important;
+        }
+        
+        /* Custom styling */
+        .adminjs-Sidebar {
+          background-color: #1a1a2e;
+        }
+        
+        .adminjs-Logo {
+          background-color: #16213e;
+        }
+      `);
+    });
+
+    // Apply AdminJS routes
     app.use(admin.options.rootPath, router);
 
     console.log("AdminJS setup complete");
   } catch (error) {
     console.error("AdminJS setup error:", error);
+    console.error(error.stack);
   }
 }
-
-// Start Application
-async function start() {
-  try {
-    await connectDB();
-    await setupAdmin();
-
-    // Define Routes
-    app.use('/', adminRouter);
-    app.use('/users', usersRouter);
-    app.use('/seller', sellerRouter);
-    app.use('/consultant', consultantRouter);
-
-    // 404 Error Handling
-    app.use((req, res, next) => next(createError(404)));
-
-    // Global Error Handler
-    app.use((err, req, res, next) => {
-      res.locals.message = err.message;
-      res.locals.error = req.app.get('env') === 'development' ? err : {};
-      res.status(err.status || 500);
-      res.render('error');
-    });
-
-    console.log("Server is running...");
-  } catch (error) {
-    console.error("Startup error:", error);
-  }
-}
-
-start();
-
-// Register Handlebars Partials
-hbs.registerPartials(__dirname + "/views/partials");
 
 // Dynamic Layout Assignment
 app.all("/*", (req, res, next) => {
@@ -156,5 +249,36 @@ app.all("/consultant/*", (req, res, next) => {
   req.app.locals.layout = "layout/consultantLayout";
   next();
 });
+
+// Start Application
+async function start() {
+  try {
+    await connectDB();
+    await setupAdmin(); // Use await here since setupAdmin is async
+
+    // Define Routes
+    app.use('/', adminRouter);
+    app.use('/users', usersRouter);
+    app.use('/seller', sellerRouter);
+    app.use('/consultant', consultantRouter);
+
+    // 404 Error Handling
+    app.use((req, res, next) => next(createError(404)));
+
+    // Global Error Handler
+    app.use((err, req, res, next) => {
+      res.locals.message = err.message;
+      res.locals.error = req.app.get('env') === 'development' ? err : {};
+      res.status(err.status || 500);
+      res.render('error');
+    });
+
+    console.log("Server is running...");
+  } catch (error) {
+    console.error("Startup error:", error);
+  }
+}
+
+start();
 
 module.exports = app;
