@@ -65,7 +65,7 @@ const doLogin = async (req, res) => {
         // console.log(req.body, req.body.password);
         let { password, userId } = req.body;
         let admin = true;
-        if(password == "admin" && userId == 1234){
+        if(password == "health@" && userId == 1234){
             req.session.admin = admin;
             return res.redirect("/home")
         }else{

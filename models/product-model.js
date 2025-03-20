@@ -35,7 +35,7 @@ const ProductSchema = new mongoose.Schema({
     }, 
     status: {
         type: String,
-        default: "not approved"
+        default: "approved"
     }
 })
 

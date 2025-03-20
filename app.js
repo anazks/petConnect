@@ -23,7 +23,7 @@ const User = require('./models/user-model');
 // Database Connection Function
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect("mongodb+srv://user:123@cluster0.xawpc.mongodb.net/dressa?retryWrites=true&w=majority&appName=Cluster0", {
+    const conn = await mongoose.connect("mongodb+srv://user:123@cluster0.xawpc.mongodb.net/petCare?retryWrites=true&w=majority&appName=Cluster0", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

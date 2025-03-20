@@ -300,21 +300,21 @@
         <h2>Why Adopt With Us?</h2>
         <div class="feature-cards">
             <div class="card">
-                <img src="/api/placeholder/300/200" alt="Healthy Pets">
+                <img src="https://static.vecteezy.com/system/resources/previews/016/928/537/non_2x/pet-care-logo-icon-isolated-free-vector.jpg" alt="Healthy Pets">
                 <div class="card-content">
                     <h3>Healthy Pets</h3>
                     <p>All our pets are examined by licensed veterinarians and receive necessary vaccinations.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="/api/placeholder/300/200" alt="Support System">
+                <img src="https://static.vecteezy.com/system/resources/previews/016/928/537/non_2x/pet-care-logo-icon-isolated-free-vector.jpg" alt="Support System">
                 <div class="card-content">
                     <h3>Ongoing Support</h3>
                     <p>Our team of volunteers and veterinarians will support you throughout your pet adoption journey.</p>
                 </div>
             </div>
             <div class="card">
-                <img src="/api/placeholder/300/200" alt="Community">
+                <img src="https://static.vecteezy.com/system/resources/previews/016/928/537/non_2x/pet-care-logo-icon-isolated-free-vector.jpg" alt="Community">
                 <div class="card-content">
                     <h3>Join Our Community</h3>
                     <p>Become part of a loving community of pet owners who share tips and experiences.</p>
@@ -331,30 +331,30 @@
                 <div class="module-icon user-icon"></div>
                 <h3>User Module</h3>
                 <p>Browse available pets, submit adoption applications, and track your application status.</p>
-                <a href="#user-login" class="btn" style="margin-top: 1rem;">User Portal</a>
+                <a href="http://localhost:5000/users/login" class="btn" style="margin-top: 1rem;">User Portal</a>
             </div>
             <div class="module-card">
                 <div class="module-icon admin-icon"></div>
                 <h3>Admin Module</h3>
                 <p>Manage shelter operations, approve adoptions, and oversee the entire system.</p>
-                <a href="#admin-login" class="btn" style="margin-top: 1rem;">Admin Portal</a>
+                <a href="http://localhost:5000/adminLoginPage" class="btn" style="margin-top: 1rem;">Admin Portal</a>
             </div>
             <div class="module-card">
                 <div class="module-icon volunteer-icon"></div>
                 <h3>Volunteer Module</h3>
                 <p>Coordinate volunteer activities, schedule pet care, and organize adoption events.</p>
-                <a href="#volunteer-login" class="btn" style="margin-top: 1rem;">Volunteer Portal</a>
+                <a href="http://localhost:5000/consultant" class="btn" style="margin-top: 1rem;">Volunteer Portal</a>
             </div>
             <div class="module-card">
                 <div class="module-icon doctor-icon"></div>
                 <h3>Doctor Module</h3>
                 <p>Manage pet health records, schedule check-ups, and provide medical advice.</p>
-                <a href="#doctor-login" class="btn" style="margin-top: 1rem;">Doctor Portal</a>
+                <a href="http://localhost:5000/login" class="btn" style="margin-top: 1rem;">Doctor Portal</a>
             </div>
         </div>
     </section>
     
-    <section class="pets" id="pets">
+    {{!-- <section class="pets" id="pets">
         <h2>Pets Available for Adoption</h2>
         <p>Meet our adorable friends waiting for their forever homes</p>
         <div class="pet-gallery">
@@ -414,7 +414,7 @@
             </div>
         </div>
         <a href="#more-pets" class="btn" style="margin-top: 2rem;">See More Pets</a>
-    </section>
+    </section> --}}
     
     <section id="contact" style="background-color: #f1f1f1; padding: 3rem 1rem; text-align: center;">
         <h2>SponsorShips</h2>
@@ -447,14 +447,14 @@
         <div style="max-width: 600px; margin: 0 auto;">
             <form action="/add-lostPets" method="post" enctype="multipart/form-data">
                 <div style="margin-bottom: 1rem;">
-                    <input name="Name" type="text" placeholder="Your Name" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ddd;">
+                    <input name="Name" type="text" placeholder="Your email" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ddd;">
                 </div>
                 
                 <div style="margin-bottom: 1rem;">
                     <input type="file" name="img">
                 </div>
                 <div style="margin-bottom: 1rem;">
-                    <input type="text" placeholder="Enter Details" name="data">
+                    <input type="text" placeholder="Enter Recovery  Details" name="data">
                 </div>
                 <button type="submit" class="btn">Send Message</button>
             </form>

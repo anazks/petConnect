@@ -3,6 +3,7 @@ const ProductModel = require('../models/product-model')
 const medBlogModel = require("../models/medicinal-blog-model");
 const CartModel = require('../models/cart-model');
 const OrderModel = require('../models/order-model');
+const CunsultantModel = require('../models/consultant-model');
 const bcrypt = require("bcrypt");
 const productModel = require("../models/product-model");
 const SellerModel = require('../models/seller-model')
@@ -20,9 +21,11 @@ const getUserHomePage = async function (req, res, next) {
         let products = await ProductModel.find({ status: "approved" }).limit(8);
         let medBlogs = await medBlogModel.find({ status: "approved" }).sort({ date: 1 }).limit(4)
         let sellers = await SellerModel.find({})
+        let Cunsultant = await CunsultantModel.find({})
+        console.log(Cunsultant,"Cunsultant")
         let { user } = req.session;
         let CartTotal = 0;
-        res.render('user/home', { product: products, user, CartTotal, medBlogs,sellers} );
+        res.render('user/home', { product: products, user, CartTotal, medBlogs,sellers,Cunsultant} );
     } catch (error) {
         console.log(error);
         req.session.alertMessage = "Error Occured. Please Retry !!!";
@@ -270,32 +273,9 @@ const goToPayment = async (req, res) => {
     }
 }
 
-const confirmPayment = async (req, res) => {
-    try {
-        let { orderId } = req.body
-        let order = await OrderModel.findOneAndUpdate({ _id: orderId }, {
-            $set: { status: "Order Placed" }
-        })
-        await CartModel.findOneAndUpdate({ userId: req.session.user._id }, { $set: { products: [] } })
-        res.redirect("/users/home")
-    } catch (error) {
-        console.log(error);
-        req.session.alertMessage = "Couldn't perform request Please Retry!!!";
-        res.redirect("/users/home")
-    }
-}
 
-const getMyOrders = async (req, res) => {
-    try {
-        let { user } = req.session;
-        let orders = await OrderModel.find({ buyerId: user._id})
-        res.render('user/myorders', { product: orders, user, homepage: true })
-    } catch (error) {
-        console.log(error);
-        req.session.alertMessage = "Couldn't perform request Please Retry!!!";
-        res.redirect("/users/home")
-    }
-}
+
+
 
 const addLike = async (req, res) => {
     try {
@@ -377,7 +357,93 @@ const getFestivalItems = async (req, res) => {
         res.status(500).json({ message: "Internal Server Error", error: error.message });
     }
 };
+const confirmPayment = async (req, res) => {
+    try {
+        let { orderId } = req.body
+        let order = await OrderModel.findOneAndUpdate({ _id: orderId }, {
+            $set: { status: "Order Placed" }
+        })
+        await CartModel.findOneAndUpdate({ userId: req.session.user._id }, { $set: { products: [] } })
+        res.redirect("/users/home")
+    } catch (error) {
+        console.log(error);
+        req.session.alertMessage = "Couldn't perform request Please Retry!!!";
+        res.redirect("/users/home")
+    }
+}
 
+const getMyOrders = async (req, res) => {
+    try {
+        let { user } = req.session;
+        let orders = await OrderModel.find({ buyerId: user._id})
+        res.render('user/myorders', { product: orders, user, homepage: true })
+    } catch (error) {
+        console.log(error);
+        req.session.alertMessage = "Couldn't perform request Please Retry!!!";
+        res.redirect("/users/home")
+    }
+}
+
+const hostal = async (req, res) => {
+    try {
+        let { user } = req.session;
+        let { id } = req.params;
+
+        console.log(user, "user session...");
+
+        const mailOptions = {
+            from: 'Pet Care System',
+            to: id,
+            subject: "Hostel Request",
+            text: `Hello ${user.userName}, Requested To a Hostel for their Pet ${user.mobile}`
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error("Error sending email:", error);
+                return res.status(500).json({ error: "Failed to send email" });
+            } else {
+                console.log("Email sent:", info.response);
+                res.redirect("/users/home")
+            }
+        });
+
+    } catch (error) {
+        console.error("Server error:", error);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+};
+const petStore= (req,res)=>{
+    try {
+        res.render('user/petStore')
+    } catch (error) {
+        console.log(error)
+    }
+}
+const petStoreOrder = async (req, res) => {
+    try {
+        console.log(req.body.customer, req.body.items[0]);
+        const mailOptions = {
+            from: 'Integrated Pat Care System',
+            to: "anazksunil2@gmail.com",
+            subject: "New Order Received",
+            text: `Order Details customer mobile: ${req.body.customer.phone} address :  ${req.body.customer.address}  payments Method ${req.body.customer.paymentMethod} ordered Item ID: ${req.body.items[0].productId} nd quanity ${req.body.items[0].quantity}`
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error("Error sending email:", error);
+                return res.status(500).json({ error: "Failed to send email" });
+            } else {
+                console.log("Email sent:", info.response);
+                res.redirect("/users/home")
+            }
+        });
+
+    } catch (error) {
+       console.log(error) 
+    }
+}
 
 module.exports = {
     getUserHomePage,
@@ -396,5 +462,8 @@ module.exports = {
     getMyOrders,
     addLike,
     searchProduct,
-    getFestivalItems
+    getFestivalItems,
+    hostal,
+    petStore,
+    petStoreOrder
 }

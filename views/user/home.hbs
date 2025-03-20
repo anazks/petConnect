@@ -380,6 +380,8 @@
     </button>
   </div>
 
+ 
+
   <!-- Pets Section -->
   <div class="product-container">
     <h2 class="section-title">Pets Available for Adoption</h2>
@@ -414,32 +416,140 @@
       <div class="row">
         {{#each sellers}}
         <div class="col-md-5 mb-4">
-          <div class="card blog-card">
-            <h3 style="text-align: center;">Pet Care Center</h3>
-            {{!-- <img src="/images/medBlog/{{_id}}.jpg" class="card-img-top" alt="{{title}}"> --}}
-                  <a href="http://localhost:7000/chat.html?username={{seller.userName}}&room=Room+1" 
-                  class="btn btn-outline-success" >Chat Now</a>
-            <div class="card-body">
-              <h4 class="card-title">{{userName}}</h4>
-              <p class="card-date">{{email}}</p>
-              <p class="card-text">{{mobile}}</p>
-            </div>
-            <div class="text-center">
-              <a href="/users/like/{{email}}" class="btn-like">
-                <span class="like-count">{{likes.length}}</span>
-                <i class="fa-solid fa-book"></i>Schedule Visit
-              </a>
-            </div>
-          </div>
+  <div class="card pet-care-card shadow-sm border-0 rounded-lg overflow-hidden">
+    <div class="card-header bg-primary text-white py-3">
+      <h3 class="m-0 text-center fw-bold">Pet Care Center</h3>
+    </div>
+    
+    <div class="card-body p-4">
+      <div class="d-flex align-items-center mb-3">
+        <div class="pet-avatar me-3">
+          <img src="https://img.freepik.com/free-photo/pet-care-veterinary-clinic-doctor-concept_1194-588789.jpg" class="rounded-circle" alt="Provider Avatar" width="60" height="60">
         </div>
+        <div>
+          <h4 class="card-title mb-1">{{userName}}</h4>
+          <p class="text-muted mb-0"><i class="fa-solid fa-envelope me-2"></i>{{email}}</p>
+          <p class="text-muted mb-0"><i class="fa-solid fa-phone me-2"></i>{{mobile}}</p>
+        </div>
+      </div>
+      
+      <div class="pet-services mb-3 p-3 bg-light rounded">
+        <h5 class="mb-2">Services Offered:</h5>
+        <ul class="list-unstyled mb-0">
+          <li><i class="fa-solid fa-paw me-2 text-primary"></i>Pet Grooming</li>
+          <li><i class="fa-solid fa-syringe me-2 text-primary"></i>Vaccination</li>
+          <li><i class="fa-solid fa-house me-2 text-primary"></i>Pet Boarding</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="card-footer bg-white border-top-0 p-3">
+      <div class="d-flex justify-content-between">
+        <a href="/users/like/{{email}}" class="btn btn-outline-primary d-flex align-items-center">
+          <i class="fa-solid fa-calendar-check me-2"></i>
+          <span>Schedule Visit</span>
+          <span class="ms-2 badge bg-primary rounded-pill">{{likes.length}}</span>
+        </a>
+        
+        <a href="http://localhost:7000/chat.html?username={{seller.userName}}&room=Room+1" 
+           class="btn btn-success d-flex align-items-center">
+          <i class="fa-solid fa-message me-2"></i>
+          <span>Chat Now</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  .pet-care-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .pet-care-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .pet-avatar img {
+    border: 3px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .pet-services {
+    border-left: 4px solid #0d6efd;
+  }
+  
+  .card-header {
+    background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+  }
+  
+  .btn-outline-primary:hover .badge {
+    background-color: #fff !important;
+    color: #0d6efd;
+  }
+</style>
         {{/each}}
       </div>
     </div>
   </div>
+  <div class="blog-container">
+    <h2 class="section-title">Pet Care Connect With Volunteer</h2>
+    <div class="container">
+      <div class="row">
+        {{#each Cunsultant}}
+        <div class="col-md-5 mb-4">
+  <div class="card pet-care-card shadow-sm border-0 rounded-lg overflow-hidden">
+    <div class="card-header bg-primary text-white py-3">
+      <h3 class="m-0 text-center fw-bold">Pet Care Center</h3>
+    </div>
+    
+    <div class="card-body p-4">
+      <div class="d-flex align-items-center mb-3">
+        <div class="pet-avatar me-3">
+          <img src="https://img.freepik.com/free-photo/pet-care-veterinary-clinic-doctor-concept_1194-588789.jpg" class="rounded-circle" alt="Provider Avatar" width="60" height="60">
+        </div>
+        <div>
+          <h4 class="card-title mb-1">{{userName}}</h4>
+          <p class="text-muted mb-0"><i class="fa-solid fa-envelope me-2"></i>{{email}}</p>
+          <p class="text-muted mb-0"><i class="fa-solid fa-phone me-2"></i>{{mobile}}</p>
+          <p class="text-muted mb-0"><i class="fa-solid fa-house me-2"></i>{{place}}</p>
 
+        </div>
+      </div>
+      
+      <div class="pet-services mb-3 p-3 bg-light rounded">
+        <h5 class="mb-2">Services Offered:</h5>
+        <ul class="list-unstyled mb-0">
+          <li><i class="fa-solid fa-paw me-2 text-primary"></i>Pet Grooming</li>
+          <li><i class="fa-solid fa-syringe me-2 text-primary"></i>Vaccination</li>
+          <li><i class="fa-solid fa-house me-2 text-primary"></i>Pet Boarding</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="card-footer bg-white border-top-0 p-3">
+      <div class="d-flex justify-content-between">
+        <a href="/users/hostal/{{email}}" class="btn btn-outline-primary d-flex align-items-center">
+          <i class="fa-solid fa-calendar-check me-2"></i>
+          <span>Arrange me a Hostels</span>
+          <span class="ms-2 badge bg-primary rounded-pill">{{likes.length}}</span>
+        </a>
+        
+        <a href="http://localhost:7000/chat.html?username={{seller.userName}}&room=Room+1" 
+           class="btn btn-success d-flex align-items-center">
+          <i class="fa-solid fa-message me-2"></i>
+          <span>Chat Now</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{{/each}}
 
   <!-- Weather Section -->
-  <div class="weather-section">
+  {{!-- <div class="weather-section">
     <h2 class="weather-title">Today's Weather <i class="fa-solid fa-cloud"></i></h2>
     <div class="weather-content">
       <div class="weather-item">
@@ -467,7 +577,7 @@
         <h3 class="weather-value" id="hum"></h3>
       </div>
     </div>
-  </div>
+  </div> --}}
 
   <!-- Footer -->
   <section class="footer">

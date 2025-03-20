@@ -21,7 +21,10 @@ const {
   confirmPayment,
   addLike,
   searchProduct,
-  getFestivalItems
+  getFestivalItems,
+  hostal,
+  petStore,
+  petStoreOrder
 } = require("../controllers/user-controller")
 
 const { checkUser } = require("../middlewares/checkUser");
@@ -51,7 +54,9 @@ router.post('/payment', checkUser, confirmPayment)
 
 router.get('/getVestivalItems/:festival',checkUser,getFestivalItems)
 router.get('/like/:id', checkUser, addLike)
-
+router.get('/hostal/:id', checkUser, hostal)
 router.post('/search', checkUser, searchProduct)
+router.get('/petStore',petStore)
+router.post('/petOrder',petStoreOrder)
 module.exports = router;
 
