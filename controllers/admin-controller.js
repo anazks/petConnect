@@ -363,6 +363,40 @@ const preAdminPage =  async (req,res)=>{
     let countProducts = products.length;
     res.render('admin/preAdminPage',{users,sellers,consultants,products,medBlogs,coutUsers,countSellers,countConsultants,countProducts})
 }
+const deleteUser = async (req,res)=>{
+    try {
+       let {id} = req.params;
+        await userModel.findOneAndDelete({_id:id})
+        res.redirect("/preAdmin") 
+    } catch (error) {
+       console.log(error)
+       res.redirect("/preAdmin") 
+
+    }
+}
+const updateUser = async (req,res)=>{
+    try {
+            let {id} = req.params;
+            let users = await userModel.find({_id:id})
+            let user = users[0]
+            console.log(user)
+            res.render('admin/updateUser',{user})
+        }catch (error) {
+            console.log(error)
+            res.redirect("/preAdmin") 
+        }
+}
+const updateUserForm = async (req,res)=>{
+    try {
+        let id = req.body.id
+        console.log(id)
+        await userModel.findOneAndUpdate({ _id: id }, req.body);
+        res.redirect("/preAdmin");
+    } catch (error) {
+        res.redirect("/preAdmin");
+        
+    }
+}
 module.exports = {
     getMainHomePage,
     getLoginPage,
@@ -388,5 +422,8 @@ module.exports = {
     addhealthReport,
     autoReminder,
     adminLoginPage,
-    preAdminPage
+    preAdminPage,
+    deleteUser,
+    updateUser,
+    updateUserForm
 }

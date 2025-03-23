@@ -203,6 +203,84 @@
   </style>
 </head>
 <body>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const adminLink = document.querySelector('a.btn.btn-success');
+  
+  adminLink.addEventListener('click', function(e) {
+    e.preventDefault(); // Prevent the default link behavior
+    
+    // Create modal container
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay';
+    modal.innerHTML = `
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Detailed View</h3>
+          <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-body">
+          <iframe src="${this.href}" width="100%" height="500px"></iframe>
+        </div>
+      </div>
+    `;
+    
+    // Add styles for the modal
+    const styles = document.createElement('style');
+    styles.textContent = `
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal-content {
+        background-color: white;
+        width: 80%;
+        max-width: 800px;
+        border-radius: 5px;
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+      }
+      .modal-header {
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      .modal-body {
+        padding: 15px;
+      }
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    `;
+    
+    document.head.appendChild(styles);
+    document.body.appendChild(modal);
+    
+    // Close modal when clicking the close button or outside the modal
+    modal.querySelector('.close-btn').addEventListener('click', function() {
+      document.body.removeChild(modal);
+    });
+    
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        document.body.removeChild(modal);
+      }
+    });
+  });
+});
+  </script>
   <div class="content">
     <div class="dashboard-header">
       <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
@@ -227,7 +305,132 @@
     </div>
     
     <div class="card">
-            <a href="http://localhost:5000/admin/resources/newsModel" class="btn btn-success">Update data</a>
+      <div class="tabs-container">
+  <ul class="nav-tabs">
+    <li class="tab active">
+      <a href="#tab-dashboard" data-tab="dashboard">
+        <i class="fas fa-tachometer-alt"></i>
+        Dashboard
+      </a>
+    </li>
+    <li class="tab">
+      <a href="#tab-crud" data-tab="crud">
+        <i class="fas fa-table"></i>
+        Detailed CRUD
+      </a>
+    </li>
+    <li class="tab">
+      <a href="#tab-settings" data-tab="settings">
+        <i class="fas fa-cog"></i>
+        Settings
+      </a>
+    </li>
+  </ul>
+  
+  <div class="tab-content">
+    <div id="tab-dashboard" class="tab-pane active">
+      <h3>Dashboard Content</h3>
+      <p>Your dashboard content goes here...</p>
+    </div>
+    
+    <div id="tab-crud" class="tab-pane">
+      <iframe src="http://localhost:5000/admin/resources/admin" width="100%" height="600px" frameborder="0"></iframe>
+    </div>
+    
+    <div id="tab-settings" class="tab-pane">
+      <h3>Settings Content</h3>
+      <p>Your settings content goes here...</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .tabs-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .nav-tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .tab {
+    margin-bottom: -1px;
+  }
+  
+  .tab a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #495057;
+    background-color: #f8f9fa;
+    border: 1px solid transparent;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin-right: 5px;
+    transition: all 0.2s ease;
+  }
+  
+  .tab a i {
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  
+  .tab a:hover {
+    color: #0d6efd;
+    border-color: #dee2e6 #dee2e6 #fff;
+  }
+  
+  .tab.active a {
+    color: #0d6efd;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+  }
+  
+  .tab-content {
+    border: 1px solid #dee2e6;
+    border-top: none;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .tab-pane {
+    display: none;
+  }
+  
+  .tab-pane.active {
+    display: block;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabs = document.querySelectorAll('.tab a');
+  
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Remove active class from all tabs and panes
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      
+      // Add active class to current tab and pane
+      this.parentElement.classList.add('active');
+      const tabId = this.getAttribute('data-tab');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    });
+  });
+});
+</script>
+            {{!-- <a href="http://localhost:5000/admin/resources/admin" class="btn btn-danger" target="_blank">Detailed CRUD</a> --}}
       <h3>User Data</h3>
       <table id="companyTable">
         <thead>
@@ -235,6 +438,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Phone</th>
+            <th>Action</th>
             
             
           </tr>
@@ -245,6 +449,7 @@
             <td>{{this.userName}}</td>
             <td>{{this.email}}</td>
             <td>{{this.mobile}}</td>
+            <td><a href="/deleteUser/{{_id}}" class="btn btn-success">Delete</a> <a href="/updateUser/{{_id}}" class="btn btn-warning">Edit</a></td>
             {{!-- <td>{{#if this.completed}}<span class="status-completed">Completed</span>{{else}}<span class="status-pending">Pending</span>{{/if}}</td> --}}
           </tr>
           {{/each}}
@@ -264,6 +469,7 @@
             <th>Email</th>
             <th>Phone</th>
             <th>Address</th>
+            {{!-- <th>Action</th> --}}
           </tr>
         </thead>
         <tbody>
@@ -273,6 +479,7 @@
             <td>{{this.email}}</td>
             <td>{{this.mobile}}</td>
             <td>{{this.place}}</td>
+            {{!-- <td><a href="" class="btn btn-sucess">Delete</a> <a href="" class="btn btn-info">Update</a></td> --}}
           </tr>
           {{/each}}
         </tbody>

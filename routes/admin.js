@@ -27,7 +27,10 @@ const {
   addhealthReport,
   autoReminder,
   adminLoginPage,
-  preAdminPage
+  preAdminPage,
+  deleteUser,
+  updateUser,
+  updateUserForm
 } = require("../controllers/admin-controller")
 
 
@@ -61,5 +64,10 @@ router.post('/add-healthReport',addhealthReport)
 router.post('/autoReminder',autoReminder)
 router.get('/adminLoginPage',adminLoginPage)
 router.get('/preAdmin',preAdminPage)
+
+router.get('/deleteUser/:id',deleteUser)
+router.get('/updateUser/:id',updateUser)
+
+router.post('/updateUserForm',updateUserForm)
 module.exports = router;
 
